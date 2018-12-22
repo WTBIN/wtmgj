@@ -12,22 +12,23 @@
     margin: auto;
 }
 
-.top_box ul {
+.top_box>ul {
     float: right;
 }
 
-.top_box ul li {
+.top_box>ul>li {
     float: left;
     margin-left: 40px;
+    position: relative;
 }
 
-.top_box ul li a {
+.top_box>ul>li>a {
     color: #999;
     display: inline-block;
     line-height: 33px;
 }
 
-.top_box ul li:nth-child(1) i {
+.top_box>ul>li:nth-child(1) i {
     display: inline-block;
     width: 10px;
     height: 12px;
@@ -38,7 +39,7 @@
     margin-right: 4px;
 }
 
-.top_box ul li:nth-child(3) i {
+.top_box>ul>li:nth-child(3) i {
     display: inline-block;
     width: 9px;
     height: 9px;
@@ -47,4 +48,86 @@
     position: relative;
     top: 2px;
     margin-left: 4px;
+}
+.top_box>ul>li:nth-child(3):hover .top_box_gytc{
+    display: block;
+}
+.top_box_gytc {
+    position: absolute;
+    width: 950px;
+    height: 370px;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, .05);
+    border-radius: 2px;
+    right: 0px;
+    display: none;
+}
+
+.top_box_gytc_s {
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+.top_box_gytc_lb {
+    height: 200px;
+    width: 150px;
+    float: left;
+    /* background-color: #ccc */
+}
+
+.top_box_gytc_lb a:hover {
+    color: #f46;
+}
+
+.top_box_gytc_lb_bt {
+    width: 34px;
+    height: 30px;
+    border-bottom: 1px solid #999;
+}
+
+.top_box_gytc_lb_bt h3 {
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 30px;
+    /* margin-bottom: 10px; */
+}
+
+.top_box_gytc_lb>ul {
+    margin-top: 10px;
+}
+
+.top_box_gytc_lb>ul>li>a {
+    line-height: 32px;
+    color: #999;
+}
+
+.top_box_gytc_fg {
+    width: 870px;
+    height: 1px;
+    background-color: #dcdcdc;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.top_box_gytc_fg>span {
+    background-color: white;
+    display: block;
+    width: 300px;
+    margin: auto;
+    text-align: center;
+    color: #999;
+    position: relative;
+    top: -5px;
+}
+
+.top_box_gytc_xx {
+    margin-top: 35px;
+    text-align: center;
+    padding: 0 10px 0 10px;
+    color: #999 !important;
+}
+
+.top_box_gytc_xx a {
+    color: #999 !important;
 }
