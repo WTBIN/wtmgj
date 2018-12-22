@@ -1,0 +1,23 @@
+.top{
+    height: 33px;
+    border-bottom: 1px solid #F0F0F0;
+    box-sizing: border-box;
+}
+.top_box{
+    width: 1200px;
+    height: 33px;
+    /* background-color:#ccc; */
+    margin: auto;
+}
+.top_box ul{
+    float: right;
+}
+.top_box ul li{
+    float: left;
+    margin-left: 40px;
+}
+.top_box ul li a{
+    color: #999;
+    display: block;
+    line-height: 33px;
+}
