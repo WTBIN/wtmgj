@@ -1,7 +1,3 @@
-if (JSON.parse(Cooke.ccdq('dlzt')) == "ydl") {
-    window.location.href = "http://" + window.location.host;
-}
-
 $("#dl_dlk_nk_kk_kz_dl").on("click", function (e) {
     $("#dl_dlk_nk_kk_kz_dl").addClass("dl_dlk_nk_kk_kz_xz");
     $("#dl_dlk_nk_kk_kz_zc").removeClass("dl_dlk_nk_kk_kz_xz");
@@ -56,10 +52,11 @@ $(".dl_dlk_nk_kk_xs_dl_an").on("click", function (e) {
                 pw: dzh[1].value
             },
             function (data, status) {
-                alert("执行结果：" + data + "\n状态：" + status);
+                // alert("执行结果：" + data + "\n状态：" + status);
                 //登陆跳转首页 设置cookie
                 if (data == "登陆成功" || data == "注册成功") {
                     Cooke.ccxr('dlzt', JSON.stringify("ydl"), 6, '/');
+                    Cooke.ccxr('dlyh', JSON.stringify(dzh[0].value), 6, '/');
                     window.location.href = "http://" + window.location.host;
                 }
             });

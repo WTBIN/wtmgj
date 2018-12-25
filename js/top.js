@@ -122,3 +122,31 @@ $(document).ready(function () {
         });
     };
 });
+
+if (JSON.parse(Cooke.ccdq('dlzt')) == "ydl") {
+    $("#nav_dl img").attr("src", "img/tx.png");
+    $("#nav_dl span").html(JSON.parse(Cooke.ccdq('dlyh')) + "∨");
+    $("#nav_dl>a").attr("href", "javascript:;");
+    $("#nav_dl").append('<div class="nav_dl_tc"><ul><li><a href="">我的订单</a></li><li><a href="javascript:;">个人设置</a></li><li><a href="javascript:;">退出</a></li></ul></div>')
+    $("#nav_dl li:last-child").on("click", function () {
+        Cooke.ccsc("dlzt");
+        Cooke.ccsc("dlyh");
+        location.reload();
+    })
+}
+$(window).scroll(function (event) {
+    if ($(document).scrollTop() > 100) {
+        $("#header").stop();
+        $("#header").animate({
+            top: -33,
+        }, 200);
+        $("#header").css("box-shadow","0 0 20px 0 rgba(0, 0, 0, .2)")
+    }
+    if ($(document).scrollTop() == 0) {
+        $("#header").stop();
+        $("#header").animate({
+            top: 0
+        }, 200);
+        $("#header").css("box-shadow","none")
+    }
+});
