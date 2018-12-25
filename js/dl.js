@@ -1,3 +1,7 @@
+if (JSON.parse(Cooke.ccdq('dlzt')) == "ydl") {
+    window.location.href = "http://" + window.location.host;
+}
+
 $("#dl_dlk_nk_kk_kz_dl").on("click", function (e) {
     $("#dl_dlk_nk_kk_kz_dl").addClass("dl_dlk_nk_kk_kz_xz");
     $("#dl_dlk_nk_kk_kz_zc").removeClass("dl_dlk_nk_kk_kz_xz");
@@ -10,10 +14,10 @@ $("#dl_dlk_nk_kk_kz_zc").on("click", function (e) {
     $("#dl_dlk_nk_kk_xs").css("left", "-400px");
     $(".dl_dlk_nk_kk_xs_zt").css("display", "none");
 });
-
+console.log(window.location.host)
 
 function dlbdyz(db) {
-    console.log("验证")
+    // console.log("验证")
     var reg = /^[a-z0-9_-]{6,16}$/;
     if (!reg.test(db)) {
         $(".dl_dlk_nk_kk_xs_zt").css("display", "block");
@@ -22,7 +26,7 @@ function dlbdyz(db) {
     return true;
 }
 //登陆注册验证
-$("form input .dl_dlk_nk_kk_xs_dl_sr").blur(function (e) {
+$(".dl_dlk_nk_kk_xs_dl_sr").blur(function (e) {
     dlbdyz(e.target.value);
 })
 
@@ -39,6 +43,7 @@ $(".dl_dlk_nk_kk_xs_dl_an").on("click", function (e) {
     jstz = dlbdyz(dzh[0].value);
     jstz = dlbdyz(dzh[1].value);
     if (jstz) {
+        // console.log("提交验证通过")
         if (e.target.value == "登陆") {
             var lxx = "dl";
         } else {
@@ -47,11 +52,16 @@ $(".dl_dlk_nk_kk_xs_dl_an").on("click", function (e) {
 
         $.post("../api/dl.php", {
                 fs: lxx,
-                zh: dlbdyz(dzh[0].value),
-                pw: dlbdyz(dzh[1].value)
+                zh: dzh[0].value,
+                pw: dzh[1].value
             },
             function (data, status) {
                 alert("执行结果：" + data + "\n状态：" + status);
+                //登陆跳转首页 设置cookie
+                if (data == "登陆成功" || data == "注册成功") {
+                    Cooke.ccxr('dlzt', JSON.stringify("ydl"), 6, '/');
+                    window.location.href = "http://" + window.location.host;
+                }
             });
     }
 });
