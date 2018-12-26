@@ -53,7 +53,7 @@ $("#nav_ssl_sk_tc").hover(
 
 function kz(x) {
     clearInterval(dsgb);
-    console.log(x)
+    // console.log(x)
     if (x == 1) {
         clearInterval(dsgb);
     }
@@ -122,9 +122,9 @@ $(document).ready(function () {
         });
     };
 });
-
+// console.log("http://"+window.location.host+"img/tx.png")
 if (JSON.parse(Cooke.ccdq('dlzt')) == "ydl") {
-    $("#nav_dl img").attr("src", "img/tx.png");
+    $("#nav_dl img").attr("src", "http://"+window.location.host+"/img/tx.png");
     $("#nav_dl span").html(JSON.parse(Cooke.ccdq('dlyh')) + "∨");
     $("#nav_dl>a").attr("href", "javascript:;");
     $("#nav_dl").append('<div class="nav_dl_tc"><ul><li><a href="">我的订单</a></li><li><a href="javascript:;">个人设置</a></li><li><a href="javascript:;">退出</a></li></ul></div>')
