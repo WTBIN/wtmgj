@@ -68,7 +68,7 @@ function pbl_sjtc() {
                 <span><img src="img/181207_3ki7d4c2di2j4ea4c69afdfl39370_50x50.png" alt=""></span>
             </div>
             <div></div>
-            <a href="" class="body_pblbox_l_g_tp">
+            <a href="${"http://"+window.location.host+"/html/yhfx.html?id="+n.id}" class="body_pblbox_l_g_tp" target="_blank">
                 <img src="${n.imgurl}" alt="">
                 <div class="body_pblbox_l_g_wz">冬天保暖必备了今天佩戴了一个发带比较ins风的感觉
                     长袜更是保命穿搭也会比较显腿长。加上比较复古风的斜挎包包严严实实好看的出门了～</div>
