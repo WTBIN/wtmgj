@@ -122,11 +122,116 @@ $(".xqy_body_sx_xz_xx_sl_kz_ja").on("click", function (e) {
     var dv = $(".xqy_body_sx_xz_xx_sl_kz_z").attr("value");
     $(".xqy_body_sx_xz_xx_sl_kz_z").attr("value", dv * 1 + 1)
     // console.log($(".xqy_body_sx_xz_xx_sl_kz_z").attr("value"))
-})
+});
+var xqy_res = (location.search).slice(1);
+var xqy_id = xqy_res.split('=')[1];
+// console.log(yhfx_id);
+$.get("../api/xqy.php", {
+        xqy_id: xqy_id,
+        qqlx: "jz"
+    },
+    function (data) {
+        var arr = JSON.parse(data)
+        // console.log(arr);
+        xqy_sj(arr);
+    });
 
-//生成当前商品传入购物车数据
-function xqy_gwcc(){
-    // var 
+//输入数据
+function xqy_sj(arr) {
+    //主图图片更新
+    var zt = arr.zt.split(",");
+    // console.log(zt);
+    $("#xqy_body_sx_zt_bigimg").attr("src", zt[0]);
+    $.each(zt, function (i, n) {
+        $("#xqy_body_sx_zt_kz_lb ul").append(`
+        <li><img src="${n}" alt=""></li>
+        `)
+    });
+    $("#xqy_body_sx_zt_kz_lb ul").css("width", zt.length * 68);
+
+    //属性信息
+    $(".xqy_body_sx_xz h1").text(arr.bt);
+
+    $("#xqy_jg").text("￥" + arr.jg);
+    $("#xqy_yj").text("￥" + arr.yj);
+    $("#xqy_xl").text("累计销量：" + arr.xl);
+    $("#xqy_pj").text("评价：" + arr.pj);
+}
+
+//购物车数据搜集 添加到数据库
+function xqy_gwcc() {
+    if (Cooke.ccdq('dlzt') == '"ydl"') {
+        // console.log("已登录")
+
+        //获取用户名
+        var yhm = JSON.parse(Cooke.ccdq('dlyh'));
+        //获取商品id
+        var xres = (location.search).slice(1);
+        var spid = xqy_res.split('=')[1];
+        //获取颜色
+        var ys = $(".xqy_body_sx_xz_xx_ys_sk.xqy_body_sx_xz_xx_xz").attr("cor");
+        //获取尺码
+        var cm = $(".xqy_body_sx_xz_xx_xz.xqy_body_sx_xz_xx_cm_k").text();
+        //获取数量
+        var sl = $(".xqy_body_sx_xz_xx_sl_kz_z").attr("value");
+        var gwcsj = {
+            "yhm": yhm,
+            "spid": spid,
+            "ys": ys,
+            "cm": cm,
+            "sl": sl
+        }
+        return gwcsj;
+
+    } else {
+        alert("请登陆");
+    }
 }
 
 
+
+$(".xqy_body_sx_xz_xx_jsan_gwc").on("click", function () {
+    var gwjson = xqy_gwcc();
+    // cookie内购物车数据名为 gwcsj 值为商品购物车数据组成的数组
+    var gwcsj = [];
+
+    //检查cookie是否有购物车数据 没有直接写入
+    if (Cooke.ccdq('gwcsj') == 'non') {
+        //将当前商品购物车数据加入cooke购物车数据
+        gwcsj.push(gwjson);
+        //写入cookie
+        Cooke.ccxr('gwcsj', JSON.stringify(gwcsj), 1, '/');
+        // console.log('cookie中没有数据直接写入');
+        // console.log(JSON.parse(Cooke.ccdq('gwcsj')));
+    } else {
+        //读取购物车数据向cooke购物车数据添加当前商品购物车数据
+        //读取到的购物车数据
+        var gwcsj = JSON.parse(Cooke.ccdq('gwcsj'));
+
+        //cookie中有当前id的商品判断属性是否和当前商品购物车数据相同，默认相同
+        //相同只增加商品数量
+        //如果没有一个相同的就新push
+        var dqsxgg = true;
+
+        //检查cookie数据中是否有当前商品id
+        for (var k in gwcsj) {
+
+            if (gwcsj[k].goodsid == gwjson.goodsid) {
+
+                if (gwcsj[k].ys == gwjson.ys && gwcsj[k].cm == gwjson.cm) {
+                    var dqslz = gwcsj[k].sl;
+                    gwcsj[k] = gwjson;
+                    gwcsj[k].sl = (gwcsj[k].sl * 1) + dqslz * 1 + '';
+                    dqsxgg = false;
+                }
+            }
+        }
+
+        //没有当前商品数据向购物车数据内添加当前商品购物车数据
+        if (dqsxgg == true) {
+            gwcsj.push(gwjson);
+        }
+        //将修改后的cookie购物车数据写入cookie
+        Cooke.ccxr('gwcsj', JSON.stringify(gwcsj), 1, '/');
+    };
+})

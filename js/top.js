@@ -132,8 +132,10 @@ if (JSON.parse(Cooke.ccdq('dlzt')) == "ydl") {
         Cooke.ccsc("dlzt");
         Cooke.ccsc("dlyh");
         location.reload();
-    })
+    });
+
 }
+
 $(window).scroll(function (event) {
     if ($(document).scrollTop() > 100) {
         $("#header").stop();
