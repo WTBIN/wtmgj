@@ -2,6 +2,7 @@
 $(document).ready(function () {
     //滚动函数
     function lbgd() {
+        
         //一张图片的宽为 768px
         $("#sc_body_bdjh_banner_lb_box_imgs").animate({
             left: '-=768px'
