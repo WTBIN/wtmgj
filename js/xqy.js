@@ -49,7 +49,7 @@ $('.xqy_body_sx_zt_bigimg').mousemove(function (e) {
     var sX = $('.xqy_body_sx_zt_bigimg').offset().left;
     var sY = $('.xqy_body_sx_zt_bigimg').offset().top;
 
-    // 计算鼠标的相对位置（相对于原图窗口的偏移距离）
+    // 计算鼠标的相对位置
     var mx = x - sX;
     var my = y - sY;
 
@@ -68,7 +68,7 @@ $('.xqy_body_sx_zt_bigimg').mousemove(function (e) {
     var lh = $('.xqy_body_sx_zt_bigimg_smk').position().top;
 
 
-    // 判断边界（小框框只能在原图窗口范围内移动）
+    // 判断边界
     var maxW = $('.xqy_body_sx_zt_bigimg').width() - $('.xqy_body_sx_zt_bigimg_smk').width()
     var maxH = $('.xqy_body_sx_zt_bigimg').height() - $('.xqy_body_sx_zt_bigimg_smk').height()
     // 左边界
@@ -91,7 +91,7 @@ $('.xqy_body_sx_zt_bigimg').mousemove(function (e) {
     // 获取小框框的偏移位置
     var lw = $('.xqy_body_sx_zt_bigimg_smk').position().left;
     var lh = $('.xqy_body_sx_zt_bigimg_smk').position().top;
-    // 计算鼠标在小图里的位置  *2.5计算大图移动的比例
+    // 计算鼠标在小图里的位置  *2.5
     var newX = lw * 2.5;
     var newY = lh * 2.5;
     $('.xqy_body_sx_zt_faj img').css({
@@ -234,4 +234,34 @@ $(".xqy_body_sx_xz_xx_jsan_gwc").on("click", function () {
         //将修改后的cookie购物车数据写入cookie
         Cooke.ccxr('gwcsj', JSON.stringify(gwcsj), 1, '/');
     };
-})
+    xqy_pf($(".xqy_body_sx_xz_xx_jsan_gwc"),$(".nav_gnrk_gwc"),$("#xqy_pfyd"));
+
+});
+
+
+//漂浮动画 传入起点 目标点 控制物品 的元素节点
+function xqy_pf(qd,mb,kz){
+    //起点left
+    var qpos = qd[0].getBoundingClientRect();
+    var ql=qpos.left+9;
+    var qt=qpos.top+11;
+    console.log(ql,qt)
+    kz.css({"left":ql,"top":qt});
+    kz.css("display","block");
+
+
+    //总点位子获取
+    var zpos = mb[0].getBoundingClientRect();
+    var zql=zpos.left+9;
+    var zqt=zpos.top;
+
+    //动画
+    kz.stop()
+    kz.animate({ 
+        left: zql,
+        top: zqt, 
+      }, 300,function(){
+        kz.css("display","none");
+      });
+
+}

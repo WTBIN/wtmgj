@@ -413,3 +413,14 @@
     line-height: 24px;
     margin-bottom: 10px;
 }
+#xqy_pfyd{
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #f46;
+    border-radius: 30px;
+    z-index: 99999;
+    display: none;
+}

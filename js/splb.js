@@ -23,7 +23,7 @@ function pbl_sjtc() {
     //循环数据数值 添加到页面
     function sjts() {
         $.each(arr, function (i, n) {
-            console.log(n.zt)
+            // console.log(n.zt)
             var zt=n.zt.split(",")	;
             $("#splb_body_n_splb").append(`
             <div class="splb_body_n_splb_g">
